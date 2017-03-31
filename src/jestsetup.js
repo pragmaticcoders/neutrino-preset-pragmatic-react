@@ -1,5 +1,6 @@
 // Make Enzyme functions available in all test files without importing
-import { shallow, render, mount } from 'enzyme';
+const enzyme = require('enzyme');
+const { shallow, render, mount } = enzyme;
 
 global.shallow = shallow;
 global.render = render;

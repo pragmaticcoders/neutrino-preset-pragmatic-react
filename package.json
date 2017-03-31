@@ -1,16 +1,20 @@
 {
   "name": "neutrino-preset-pragmatic-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "neutrino preset for react projects",
   "main": "src/index.js",
   "author": "Mateusz Probachta <mateusz.probachta@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "neutrino-middleware-loader-merge": "^5.1.0",
     "enzyme": "^2.8.0",
     "enzyme-to-json": "^1.5.0",
+    "neutrino": "^5.0.1",
     "neutrino-preset-airbnb-base": "^5.0.1",
     "neutrino-preset-jest": "^5.0.1",
     "neutrino-preset-react": "^5.0.1",
+    "react-addons-test-utils": "^15.4.2",
+    "babel-plugin-react-css-modules": "^2.6.0"
   },
   "peerDependencies": {
     "neutrino": "^5.1.0"

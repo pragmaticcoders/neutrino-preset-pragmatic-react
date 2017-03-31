@@ -27,6 +27,11 @@ function setupModule(neutrino) {
 }
 
 
+console.log(
+  require.resolve('enzyme-to-json/serializer')
+);
+
+
 function setupOptions(neutrino) {
   const { options } = neutrino;
 
@@ -40,7 +45,7 @@ function setupOptions(neutrino) {
       join(__dirname, './jestsetup.js')
     ],
     snapshotSerializers: [
-      join(__dirname, '../node_modules/enzyme-to-json/serializer')
+      require.resolve('enzyme-to-json/serializer')
     ]
   };
 }
