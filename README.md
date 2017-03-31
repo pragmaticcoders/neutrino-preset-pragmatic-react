@@ -27,7 +27,7 @@
 
 ```bash
 ❯ mkdir {test,src}
-❯ cat >/etc/index.js <<EOL
+❯ cat > src/index.js <<EOL
 import React from 'react';
 import { render } from 'react-dom';
 
@@ -45,7 +45,7 @@ Now edit your project's package.json to add commands for starting and building t
  "neutrino": {
     "use": [
       "neutrino-preset-pragmatic-react"
-    ],
+    ]
   },
   "scripts": {
     "start": "neutrino start",
