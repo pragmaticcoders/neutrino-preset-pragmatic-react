@@ -10,14 +10,16 @@
 #### Yarn
 
 ```bash
-❯ yarn add --dev neutrino neutrino-preset-pragmatic-react
+❯ yarn add --dev neutrino
+❯ yarn add --dev https://github.com/pragmaticcoders/neutrino-preset-pragmatic-react.git#v1.0.1
 ❯ yarn add react react-dom
 ```
 
 #### npm
 
 ```bash
-❯ npm install --save-dev neutrino neutrino-preset-pragmatic-react
+❯ npm install --save-dev neutrino
+❯ npm install --save-dev https://github.com/pragmaticcoders/neutrino-preset-pragmatic-react.git#v1.0.1
 ❯ npm install --save react react-dom
 ```
 
@@ -73,3 +75,8 @@ Start the app, then open a browser to the address in the console:
 ✔ Development server running on: http://localhost:5000
 ✔ Build completed
 ```
+
+## TODO
+[] example project
+[] tests
+[] https://www.npmjs.com/
