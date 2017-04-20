@@ -11,16 +11,16 @@
 
 ```bash
 ❯ yarn add --dev neutrino
-❯ yarn add --dev https://github.com/pragmaticcoders/neutrino-preset-pragmatic-react.git#v1.0.1
-❯ yarn add react react-dom
+❯ yarn add --dev https://github.com/pragmaticcoders/neutrino-preset-pragmatic-react.git#v1.1.0
+❯ yarn add react react-dom prop-types
 ```
 
 #### npm
 
 ```bash
 ❯ npm install --save-dev neutrino
-❯ npm install --save-dev https://github.com/pragmaticcoders/neutrino-preset-pragmatic-react.git#v1.0.1
-❯ npm install --save react react-dom
+❯ npm install --save-dev https://github.com/pragmaticcoders/neutrino-preset-pragmatic-react.git#v1.1.0
+❯ npm install --save react react-dom prop-types
 ```
 
 ## Quickstart
@@ -63,7 +63,7 @@ Start the app, then open a browser to the address in the console:
 ### Yarn
 
 ```bash
-❯ npm start
+❯ yarn start
 ✔ Development server running on: http://localhost:5000
 ✔ Build completed
 ```
