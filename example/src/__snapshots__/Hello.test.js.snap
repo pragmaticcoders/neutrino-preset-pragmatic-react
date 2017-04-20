@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Component) Hello should render 1`] = `
+<h1
+  className="src-___Hello__Hello___mf9G7"
+>
+  Hello 
+  World
+  !
+</h1>
+`;

@@ -77,6 +77,6 @@ Start the app, then open a browser to the address in the console:
 ```
 
 ## TODO
-- [ ] example project
+- [x] example project
 - [ ] tests
 - [ ] https://www.npmjs.com/
