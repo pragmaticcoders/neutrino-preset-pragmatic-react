@@ -10,24 +10,24 @@
 #### Yarn
 
 ```bash
-❯ yarn add --dev neutrino
-❯ yarn add --dev https://github.com/pragmaticcoders/neutrino-preset-pragmatic-react.git#v1.2.0
-❯ yarn add react react-dom prop-types
+$ yarn add --dev neutrino
+$ yarn add --dev neutrino-preset-pragmatic-react
+$ yarn add react react-dom prop-types
 ```
 
 #### npm
 
 ```bash
-❯ npm install --save-dev neutrino
-❯ npm install --save-dev https://github.com/pragmaticcoders/neutrino-preset-pragmatic-react.git#v1.2.0
-❯ npm install --save react react-dom prop-types
+$ npm install --save-dev neutrino
+$ npm install --save-dev neutrino-preset-pragmatic-react
+$ npm install --save react react-dom prop-types
 ```
 
 ## Quickstart
 
 ```bash
-❯ mkdir {test,src}
-❯ cat > src/index.js <<EOL
+$ mkdir {test,src}
+$ cat > src/index.js <<EOL
 import React from 'react';
 import { render } from 'react-dom';
 
@@ -63,7 +63,7 @@ Start the app, then open a browser to the address in the console:
 ### Yarn
 
 ```bash
-❯ yarn start
+$ yarn start
 ✔ Development server running on: http://localhost:5000
 ✔ Build completed
 ```
@@ -71,7 +71,7 @@ Start the app, then open a browser to the address in the console:
 ### Npm
 
 ```bash
-❯ npm start
+$ npm start
 ✔ Development server running on: http://localhost:5000
 ✔ Build completed
 ```
@@ -79,4 +79,4 @@ Start the app, then open a browser to the address in the console:
 ## TODO
 - [x] example project
 - [ ] tests
-- [ ] https://www.npmjs.com/
+- [x] https://www.npmjs.com/

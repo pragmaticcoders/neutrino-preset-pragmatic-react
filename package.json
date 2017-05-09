@@ -3,7 +3,17 @@
   "version": "1.2.1",
   "description": "neutrino preset for react projects",
   "homepage": "https://github.com/pragmaticcoders/neutrino-preset-pragmatic-react",
+  "repository": "https://github.com/pragmaticcoders/neutrino-preset-pragmatic-react",
+  "bugs": "https://github.com/pragmaticcoders/neutrino-preset-pragmatic-react/issues",
   "main": "src/index.js",
+  "keywords": [
+    "neutrino",
+    "neutrino-preset",
+    "jest",
+    "react",
+    "scss",
+    "enzyme"
+  ],
   "author": "Mateusz Probachta <mateusz.probachta@gmail.com>",
   "license": "MIT",
   "dependencies": {
