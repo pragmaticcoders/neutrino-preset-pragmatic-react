@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { PropTypes } from 'prop-types';
 
-import './Hello.css';
+import style from './Hello.scss';
 
 
 const propTypes = {
@@ -16,7 +16,7 @@ class Hello extends PureComponent {
   render() {
     const { name } = this.props;
     return (
-      <h1 styleName="Hello">Hello {name}!</h1>
+      <h1 className={style.Hello}>Hello {name}!</h1>
     );
   }
 }

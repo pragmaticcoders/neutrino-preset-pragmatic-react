@@ -5,7 +5,44 @@ const react = require('neutrino-preset-react');
 const jest = require('neutrino-preset-jest');
 const lint = require('neutrino-preset-airbnb-base');
 
-function setupModule(neutrino) {
+const cssLoader = require.resolve("css-loader");
+const sassLoader = require.resolve("sass-loader");
+const styleLoader = require.resolve("style-loader");
+
+const CLASS_LOCAL_IDENT_NAME = '[path]___[name]__[local]___[hash:base64:5]';
+
+
+function setupSassModule(neutrino) {
+  const options = neutrino.options.config;
+  const sassOptions = {
+    sourceMap: true
+  };
+
+  if (options.resolve && options.resolve.modules) {
+    sassOptions.includePaths = options.resolve.modules;
+  }
+
+  neutrino.config.module
+    .rule("scss")
+    .test(/\.scss$/)
+    .use("style")
+      .loader(styleLoader)
+      .end()
+    .use("css")
+      .loader(cssLoader)
+      .options({
+        modules: true,
+        sourceMap: true,
+        localIdentName: CLASS_LOCAL_IDENT_NAME
+      })
+      .end()
+    .use("sass")
+      .loader(sassLoader)
+    .options(sassOptions);
+}
+
+
+function setupCssModule(neutrino) {
 
 
   neutrino.use(loaderMerge('lint', 'eslint'), {
@@ -17,19 +54,10 @@ function setupModule(neutrino) {
 
   neutrino.use(loaderMerge('style', 'css'), {
     modules: true,
-    localIdentName: '[path]___[name]__[local]___[hash:base64:5]'
+    sourceMap: true,
+    localIdentName: CLASS_LOCAL_IDENT_NAME
   });
-
-  neutrino.use(loaderMerge('compile', 'babel'), {
-    plugins: [require.resolve('babel-plugin-react-css-modules')]
-  });
-
 }
-
-
-console.log(
-  require.resolve('enzyme-to-json/serializer')
-);
 
 
 function setupOptions(neutrino) {
@@ -58,6 +86,7 @@ module.exports = neutrino => {
   neutrino.use(jest);
 
   // config presets
-  setupModule(neutrino);
+  setupCssModule(neutrino);
+  setupSassModule(neutrino);
   setupOptions(neutrino);
 };
