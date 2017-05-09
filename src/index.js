@@ -72,6 +72,9 @@ function setupOptions(neutrino) {
     setupFiles: [
       join(__dirname, './jestsetup.js')
     ],
+    moduleNameMapper: {
+      '\\.scss$': require.resolve('./style-mock')
+    },
     snapshotSerializers: [
       require.resolve('enzyme-to-json/serializer')
     ]
