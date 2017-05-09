@@ -1,7 +1,8 @@
 {
   "name": "neutrino-preset-pragmatic-react",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "neutrino preset for react projects",
+  "homepage": "https://github.com/pragmaticcoders/neutrino-preset-pragmatic-react",
   "main": "src/index.js",
   "author": "Mateusz Probachta <mateusz.probachta@gmail.com>",
   "license": "MIT",
