@@ -1,3 +1,5 @@
+// Make async/awiat awialable in tests
+require("babel-polyfill");
 // Make Enzyme functions available in all test files without importing
 const enzyme = require('enzyme');
 const { shallow, render, mount } = enzyme;
