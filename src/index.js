@@ -73,7 +73,7 @@ function setupOptions(neutrino) {
       join(__dirname, './jestsetup.js')
     ],
     moduleNameMapper: {
-      '\\.scss$': require.resolve('./style-mock')
+      '\\.(css|scss)$': require.resolve('identity-obj-proxy')
     },
     snapshotSerializers: [
       require.resolve('enzyme-to-json/serializer')

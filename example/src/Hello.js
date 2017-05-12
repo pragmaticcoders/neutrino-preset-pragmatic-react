@@ -12,11 +12,12 @@ const defaultProps = {
 
 
 class Hello extends PureComponent {
-
   render() {
     const { name } = this.props;
     return (
-      <h1 className={style.Hello}>Hello {name}!</h1>
+      <div className={style.Hello}>
+        <h1 className={style.Hello}>Hello {name}!</h1>
+      </div>
     );
   }
 }
