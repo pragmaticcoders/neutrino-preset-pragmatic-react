@@ -34,9 +34,7 @@ function setupExtractText(neutrino, options) {
   });
 
   neutrino.config.plugin('extract')
-    .use(ExtractTextPlugin, [options.filename || '[name].css']);
-
-
+    .use(ExtractTextPlugin, [options.filename || '[name]-[contenthash].css']);
 };
 
 function setupSassModule(neutrino) {
