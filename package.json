@@ -17,10 +17,12 @@
   "author": "Mateusz Probachta <mateusz.probachta@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "babel-plugin-react-css-modules": "^2.7.0",
     "babel-polyfill": "^6.23.0",
     "css-loader": "^0.28.1",
     "enzyme": "^2.8.2",
     "enzyme-to-json": "^1.5.1",
+    "extract-text-webpack-plugin": "^2.1.0",
     "identity-obj-proxy": "^3.0.0",
     "neutrino": "^5.8.0",
     "neutrino-middleware-loader-merge": "^5.8.0",
