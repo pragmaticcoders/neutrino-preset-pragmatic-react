@@ -8,9 +8,36 @@ const lint = require('neutrino-preset-airbnb-base');
 const cssLoader = require.resolve("css-loader");
 const sassLoader = require.resolve("sass-loader");
 const styleLoader = require.resolve("style-loader");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const CLASS_LOCAL_IDENT_NAME = '[path]___[name]__[local]___[hash:base64:5]';
 
+function setupExtractText(neutrino, options) {
+  const styleRule = neutrino.config.module.rule('scss');
+  const styleTest = styleRule.get('test');
+  const styleFallback = {
+    loader: styleRule.use('style').get('loader'),
+    options: styleRule.use('style').get('options') };
+  const styleLoaders = Array.from(styleRule.uses.store.keys())
+    .filter((key) => key !== 'style')
+    .map((key) => styleRule.use(key))
+    .map((use) => ({loader: use.get('loader'), options: use.get('options')}));
+
+  const loaders = ExtractTextPlugin.extract({
+    fallback: options.fallback || styleFallback|| 'style-loader',
+    use: options.use || styleLoaders || 'css-loader'
+  });
+
+  styleRule.uses.clear();
+  loaders.forEach(({loader, options}) => {
+    styleRule.use(loader).loader(loader).options(options);
+  });
+
+  neutrino.config.plugin('extract')
+    .use(ExtractTextPlugin, [options.filename || '[name].css']);
+
+
+};
 
 function setupSassModule(neutrino) {
   const options = neutrino.options.config;
@@ -59,7 +86,6 @@ function setupCssModule(neutrino) {
   });
 }
 
-
 function setupOptions(neutrino) {
   const { options } = neutrino;
 
@@ -81,15 +107,15 @@ function setupOptions(neutrino) {
   };
 }
 
-
-module.exports = neutrino => {
+module.exports = (neutrino, options) => {
   // load presets
   neutrino.use(lint);
   neutrino.use(react);
   neutrino.use(jest);
 
   // config presets
-  setupCssModule(neutrino);
-  setupSassModule(neutrino);
-  setupOptions(neutrino);
+  setupCssModule(neutrino, options);
+  setupSassModule(neutrino, options);
+  setupOptions(neutrino, options);
+  setupExtractText(neutrino, options);
 };

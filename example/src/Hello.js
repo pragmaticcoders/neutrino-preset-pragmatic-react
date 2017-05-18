@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types';
 import style from './Hello.scss';
 
 
-const propTypes = {
+const propTypes = PropTypes && {
   name: PropTypes.string
 };
 const defaultProps = {
