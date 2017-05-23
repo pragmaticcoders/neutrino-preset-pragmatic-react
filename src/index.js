@@ -115,5 +115,7 @@ module.exports = (neutrino, options) => {
   setupCssModule(neutrino, options);
   setupSassModule(neutrino, options);
   setupOptions(neutrino, options);
-  setupExtractText(neutrino, options);
+  if ( process.env.NODE_ENV === 'production') {
+    setupExtractText(neutrino, options);
+  }
 };
