@@ -38,13 +38,13 @@ function setupExtractText(neutrino, options) {
 };
 
 function setupSassModule(neutrino) {
-  const options = neutrino.options.config;
+  const config = neutrino.options.config;
   const sassOptions = {
     sourceMap: true
   };
 
-  if (options.resolve && options.resolve.modules) {
-    sassOptions.includePaths = options.resolve.modules;
+  if (config && config.resolve && config.resolve.modules) {
+    sassOptions.includePaths = config.resolve.modules;
   }
 
   neutrino.config.module
