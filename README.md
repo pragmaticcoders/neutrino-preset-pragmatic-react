@@ -1,9 +1,9 @@
 # neutrino-preset-pragmatic-react
 ## Requirements
 
-- Node.js v6.9+
+- Node.js v6.10+
 - Yarn or npm client
-- Neutrino v5
+- Neutrino v6
 
 ## Installation
 

@@ -12,7 +12,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const CLASS_LOCAL_IDENT_NAME = '[path]___[name]__[local]___[hash:base64:5]';
 
-function setupExtractText(neutrino, options) {
+function setupExtractText(neutrino) {
+  const { options } = neutrino;
   const styleRule = neutrino.config.module.rule('scss');
   const styleTest = styleRule.get('test');
   const styleFallback = {
@@ -92,20 +93,17 @@ function setupCssModule(neutrino) {
   });
 }
 
-function setupOptions(neutrino) {
-  const { options } = neutrino;
-
-  options.jest = {
+function getJestOptions(neutrino) {
+  return {
     unmockedModulePathPatterns: [
       'node_modules/react/',
       'node_modules/enzyme/'
     ],
-    roots: ['<rootDir>/src/', '<rootDir>/test/'],
     setupFiles: [
       join(__dirname, './jestsetup.js')
     ],
     moduleNameMapper: {
-      '\\.(css|scss)$': require.resolve('identity-obj-proxy')
+      '\\.(css|less|sass|scss)$': require.resolve('identity-obj-proxy')
     },
     snapshotSerializers: [
       require.resolve('enzyme-to-json/serializer')
@@ -113,19 +111,17 @@ function setupOptions(neutrino) {
   };
 }
 
-module.exports = (neutrino, options) => {
-  console.log('\n\tyooloo\n');
+module.exports = (neutrino) => {
   // load presets
   neutrino.use(lint);
   neutrino.use(react);
-  neutrino.use(jest);
-
+  neutrino.options.tests = 'src';  // TODO: refactor code to remove this hack
+  neutrino.use(jest, getJestOptions(neutrino));
   // config presets
-  setupLinterModule(neutrino, options);
-  setupCssModule(neutrino, options);
-  setupSassModule(neutrino, options);
-  setupOptions(neutrino, options);
+  setupLinterModule(neutrino);
+  setupCssModule(neutrino);
+  setupSassModule(neutrino);
   if ( process.env.NODE_ENV === 'production') {
-    setupExtractText(neutrino, options);
+    setupExtractText(neutrino);
   }
 };
