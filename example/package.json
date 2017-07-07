@@ -4,13 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "neutrino": "^5.6.0",
+    "neutrino": "^6.1.4",
     "neutrino-preset-pragmatic-react": "file:../"
-  },
-  "neutrino": {
-    "use": [
-      "neutrino-preset-pragmatic-react"
-    ]
   },
   "scripts": {
     "start": "neutrino start",
@@ -19,9 +14,9 @@
     "test-watch": "neutrino test --watch"
   },
   "dependencies": {
-    "prop-types": "^15.5.8",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "react-hot-loader": "next"
   }
 }
