@@ -5,9 +5,9 @@ const react = require('neutrino-preset-react');
 const jest = require('neutrino-preset-jest');
 const lint = require('neutrino-preset-airbnb-base');
 
-const cssLoader = require.resolve("css-loader");
-const sassLoader = require.resolve("sass-loader");
-const styleLoader = require.resolve("style-loader");
+const cssLoader = require.resolve('css-loader');
+const sassLoader = require.resolve('sass-loader');
+const styleLoader = require.resolve('style-loader');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const CLASS_LOCAL_IDENT_NAME = '[path]___[name]__[local]___[hash:base64:5]';
@@ -48,12 +48,12 @@ function setupSassModule(neutrino) {
   }
 
   neutrino.config.module
-    .rule("scss")
+    .rule('scss')
     .test(/\.scss$/)
-    .use("style")
+    .use('style')
       .loader(styleLoader)
       .end()
-    .use("css")
+    .use('css')
       .loader(cssLoader)
       .options({
         modules: true,
@@ -61,22 +61,30 @@ function setupSassModule(neutrino) {
         localIdentName: CLASS_LOCAL_IDENT_NAME
       })
       .end()
-    .use("sass")
+    .use('sass')
       .loader(sassLoader)
     .options(sassOptions);
 }
 
 
-function setupCssModule(neutrino) {
-
-
-  neutrino.use(loaderMerge('lint', 'eslint'), {
-    rules: {
-      'babel/new-cap': 'off',
-      'comma-dangle': 'off'
-    }
+function setupLinterModule(neutrino) {
+  neutrino.config.when(neutrino.config.module.rules.has('lint'), () => {
+    neutrino.use(loaderMerge('lint', 'eslint'), {
+      baseConfig: {
+        extends: [
+          'plugin:react/recommended'
+        ]
+      },
+      rules: {
+        'babel/new-cap': 'off',
+        'comma-dangle': 'off'
+      }
+    });
   });
+}
 
+
+function setupCssModule(neutrino) {
   neutrino.use(loaderMerge('style', 'css'), {
     modules: true,
     sourceMap: true,
@@ -106,12 +114,14 @@ function setupOptions(neutrino) {
 }
 
 module.exports = (neutrino, options) => {
+  console.log('\n\tyooloo\n');
   // load presets
   neutrino.use(lint);
   neutrino.use(react);
   neutrino.use(jest);
 
   // config presets
+  setupLinterModule(neutrino, options);
   setupCssModule(neutrino, options);
   setupSassModule(neutrino, options);
   setupOptions(neutrino, options);
