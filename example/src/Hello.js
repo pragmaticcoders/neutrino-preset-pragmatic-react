@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { PropTypes } from 'prop-types';
 
 import style from './Hello.scss';
+import logo from './logo.png';
 
 
 const propTypes = PropTypes && {
@@ -17,6 +18,7 @@ class Hello extends PureComponent {
     return (
       <div className={style.Hello}>
         <h1 className={style.Hello}>Hello {name}!</h1>
+        <img alt="logo" src={logo} height="150"/>
       </div>
     );
   }

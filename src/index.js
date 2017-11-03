@@ -1,8 +1,5 @@
-const { join } = require('path');
-
 const loaderMerge = require('neutrino-middleware-loader-merge');
 const react = require('neutrino-preset-react');
-const jest = require('neutrino-preset-jest');
 
 const cssLoader = require.resolve('css-loader');
 const sassLoader = require.resolve('sass-loader');
@@ -10,6 +7,7 @@ const styleLoader = require.resolve('style-loader');
 
 const lint = require('./lint');
 const extractStyles = require('./extractStyles');
+const jest = require('./jest');
 
 const CLASS_LOCAL_IDENT_NAME = '[path]___[name]__[local]___[hash:base64:5]';
 
@@ -52,30 +50,12 @@ function setupCssModule(neutrino) {
   });
 }
 
-function getJestOptions(neutrino) {
-  return {
-    unmockedModulePathPatterns: [
-      'node_modules/react/',
-      'node_modules/enzyme/'
-    ],
-    setupFiles: [
-      join(__dirname, './jestsetup.js')
-    ],
-    moduleNameMapper: {
-      '\\.(css|less|sass|scss)$': require.resolve('identity-obj-proxy')
-    },
-    snapshotSerializers: [
-      require.resolve('enzyme-to-json/serializer')
-    ]
-  };
-}
-
 module.exports = (neutrino, options = {}) => {
   // load presets
   neutrino.use(lint);
   neutrino.use(react);
   neutrino.options.tests = 'src';  // TODO: refactor code to remove this hack
-  neutrino.use(jest, getJestOptions(neutrino));
+  neutrino.use(jest, options.jest);
   // config presets
   setupCssModule(neutrino);
   setupSassModule(neutrino);
