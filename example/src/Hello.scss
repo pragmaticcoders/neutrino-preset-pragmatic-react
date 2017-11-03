@@ -1,5 +1,8 @@
-$color: red;
+@import "./styles/mixins";
+$color: #20bbb3;
 
 .Hello {
   color: $color;
+  text-align: center;
+  @include pattern_bg;
 }

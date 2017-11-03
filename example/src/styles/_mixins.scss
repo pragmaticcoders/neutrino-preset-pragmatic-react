@@ -1,0 +1,5 @@
+$pattern: url("../assets/grass.jpg");
+
+@mixin pattern_bg() {
+  background: $pattern;
+}

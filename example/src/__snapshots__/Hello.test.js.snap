@@ -11,5 +11,10 @@ exports[`(Component) Hello should render 1`] = `
     World
     !
   </h1>
+  <img
+    alt="logo"
+    height="150"
+    src="test-file-stub"
+  />
 </div>
 `;
