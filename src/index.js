@@ -8,35 +8,11 @@ const lint = require('neutrino-preset-airbnb-base');
 const cssLoader = require.resolve('css-loader');
 const sassLoader = require.resolve('sass-loader');
 const styleLoader = require.resolve('style-loader');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const extractStyles = require('./extractStyles');
 
 const CLASS_LOCAL_IDENT_NAME = '[path]___[name]__[local]___[hash:base64:5]';
 
-function setupExtractText(neutrino) {
-  const { options } = neutrino;
-  const styleRule = neutrino.config.module.rule('scss');
-  const styleTest = styleRule.get('test');
-  const styleFallback = {
-    loader: styleRule.use('style').get('loader'),
-    options: styleRule.use('style').get('options') };
-  const styleLoaders = Array.from(styleRule.uses.store.keys())
-    .filter((key) => key !== 'style')
-    .map((key) => styleRule.use(key))
-    .map((use) => ({loader: use.get('loader'), options: use.get('options')}));
-
-  const loaders = ExtractTextPlugin.extract({
-    fallback: options.fallback || styleFallback|| 'style-loader',
-    use: options.use || styleLoaders || 'css-loader'
-  });
-
-  styleRule.uses.clear();
-  loaders.forEach(({loader, options}) => {
-    styleRule.use(loader).loader(loader).options(options);
-  });
-
-  neutrino.config.plugin('extract')
-    .use(ExtractTextPlugin, [options.filename || '[name]-[contenthash].css']);
-};
 
 function setupSassModule(neutrino) {
   const config = neutrino.options.config;
@@ -111,7 +87,7 @@ function getJestOptions(neutrino) {
   };
 }
 
-module.exports = (neutrino) => {
+module.exports = (neutrino, options = {}) => {
   // load presets
   neutrino.use(lint);
   neutrino.use(react);
@@ -122,6 +98,6 @@ module.exports = (neutrino) => {
   setupCssModule(neutrino);
   setupSassModule(neutrino);
   if ( process.env.NODE_ENV === 'production') {
-    setupExtractText(neutrino);
+    neutrino.use(extractStyles, options.extractStyles);
   }
 };
