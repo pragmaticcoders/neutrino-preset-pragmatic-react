@@ -3,12 +3,12 @@ const { join } = require('path');
 const loaderMerge = require('neutrino-middleware-loader-merge');
 const react = require('neutrino-preset-react');
 const jest = require('neutrino-preset-jest');
-const lint = require('neutrino-preset-airbnb-base');
 
 const cssLoader = require.resolve('css-loader');
 const sassLoader = require.resolve('sass-loader');
 const styleLoader = require.resolve('style-loader');
 
+const lint = require('./lint');
 const extractStyles = require('./extractStyles');
 
 const CLASS_LOCAL_IDENT_NAME = '[path]___[name]__[local]___[hash:base64:5]';
@@ -41,23 +41,6 @@ function setupSassModule(neutrino) {
     .use('sass')
       .loader(sassLoader)
     .options(sassOptions);
-}
-
-
-function setupLinterModule(neutrino) {
-  neutrino.config.when(neutrino.config.module.rules.has('lint'), () => {
-    neutrino.use(loaderMerge('lint', 'eslint'), {
-      baseConfig: {
-        extends: [
-          'plugin:react/recommended'
-        ]
-      },
-      rules: {
-        'babel/new-cap': 'off',
-        'comma-dangle': 'off'
-      }
-    });
-  });
 }
 
 
@@ -94,7 +77,6 @@ module.exports = (neutrino, options = {}) => {
   neutrino.options.tests = 'src';  // TODO: refactor code to remove this hack
   neutrino.use(jest, getJestOptions(neutrino));
   // config presets
-  setupLinterModule(neutrino);
   setupCssModule(neutrino);
   setupSassModule(neutrino);
   if ( process.env.NODE_ENV === 'production') {
