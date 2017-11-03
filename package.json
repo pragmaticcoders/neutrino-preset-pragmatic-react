@@ -24,11 +24,11 @@
     "enzyme-to-json": "^3.1.4",
     "extract-text-webpack-plugin": "^3.0.2",
     "identity-obj-proxy": "^3.0.0",
-    "neutrino": "^7.3.0",
-    "neutrino-middleware-loader-merge": "^7.3.0",
-    "neutrino-preset-airbnb-base": "^7.3.0",
-    "neutrino-preset-jest": "^7.3.0",
-    "neutrino-preset-react": "^7.3.0",
+    "neutrino": "7.2.3",
+    "neutrino-middleware-loader-merge": "7.2.3",
+    "neutrino-preset-airbnb-base": "7.2.3",
+    "neutrino-preset-jest": "7.2.3",
+    "neutrino-preset-react": "7.2.3",
     "node-sass": "^4.5.2",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^15.6.2",
@@ -36,7 +36,7 @@
     "style-loader": "^0.17.0"
   },
   "peerDependencies": {
-    "neutrino": "^7.3.0",
+    "neutrino": "7.2.3",
     "prop-types": "^15.6.0",
     "react": "^15.6.2",
     "react-dom": "^15.6.2"
